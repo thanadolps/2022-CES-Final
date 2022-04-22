@@ -1,0 +1,39 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #f8f8ff;
+}
+
+#main-content {
+    display: flex;
+}
+
+#calendar {
+    border: 1px solid black;
+    text-align: center;
+    width: 75vw;
+}
+
+#calendar>table {
+    width: 100%;
+    padding: 16px;
+}
+
+#date-event {
+    border: 1px solid black;
+}
+
+.calendar-cell {
+    height: 50px;
+    border: 1px solid black;
+    text-align: left;
+    vertical-align: text-top;
+}
