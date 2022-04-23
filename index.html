@@ -26,6 +26,7 @@
                 <span id="calendar-month">MARCH 2023</span>
                 <button onclick="monthUp()">&gt;</button>
                 <button onclick="gotoToday()">T</button>
+                <button onclick="refetchEvents()">refetch</button>
             </h2>
 
             <table id="calendar-table">
@@ -40,7 +41,8 @@
                 </tr>
                 <!-- calendar.js will create table cells here-->
                 <!-- cell's inner html is defined in updateCalendarCell in template.js -->
-                <!-- cell class is "calendar-cell" -->
+                <!-- cell css class is "calendar-cell" -->
+                <!-- selecting cell also have ccs class "calendar-cell-selected" -->
             </table>
 
         </div>
@@ -52,17 +54,18 @@
                 <!-- will be filled by updateEventList in template.js -->
             </ul>
 
-            <form>
-                <select>
-                    <option disabled selected>วิชา</option>
+            <form action="#" id="date-event-form" onsubmit="submitEvent(event)">
+                <select name="subject" selected="" required>
+                    <option disabled selected value="">วิชา</option>
+                    <option value="Cal">Cal</option>
                 </select>
-                <select>
-                    <option disabled selected>ประเภทงาน</option>
+                <select name="type" selected="" required>
+                    <option disabled selected value="">ประเภทงาน</option>
+                    <option value="Exam">สอบ</option>
+                    <option value="HW">การบ้าน</option>
+                    <option value="_">อื่นๆ</option>
                 </select>
-                <select>
-                    <option disabled selected>วันเดือนปี</option>
-                </select>
-                <input placeholder="Task Name" />
+                <input name="name" placeholder="Task Name" required />
                 <button>Submit</button>
             </form>
         </div>
@@ -73,6 +76,12 @@
     <script type="module" src="event.js"></script>
     <script type="module" src="template.js"></script>
     <script type="module" src="calendar.js"></script>
+    <script type="module">
+        import { initalizeCalendar } from "./calendar.js";
+        import { refetchEvents } from "./event.js"
+        initalizeCalendar();
+        refetchEvents();
+    </script>
 </body>
 
 </html>

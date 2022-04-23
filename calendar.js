@@ -1,5 +1,5 @@
 import { updateCalendarCell, updateEventList } from "./template.js"
-import { month_events } from "./event.js"
+import { event_list, month_events } from "./event.js"
 
 const N_DAY_IN_WEEK = 7;
 const N_WEEK_IN_MONTH = 6;
@@ -11,7 +11,7 @@ const cells = []
 export let selectedDate = new Date();  // initalize to today
 
 // ====================
-function initalizeCalendar() {
+export function initalizeCalendar() {
     // Generate cells in calendar
     for (let i = 0; i < N_WEEK_IN_MONTH; i++) {
         const row = document.createElement("tr");
@@ -25,7 +25,7 @@ function initalizeCalendar() {
 }
 
 
-function updateCalendar(year = selectedDate.getFullYear(), month = selectedDate.getMonth()) {
+export function updateCalendar(year = selectedDate.getFullYear(), month = selectedDate.getMonth()) {
     // month 0 = Jan, 1 = Feb, etc..
 
     // Change cell's date number
@@ -35,10 +35,13 @@ function updateCalendar(year = selectedDate.getFullYear(), month = selectedDate.
     const d = new Date(year, month, 1);
     const start_cell = d.getDay();
     for (let i = 1; new Date(year, month, i).getMonth() == month; i++) {
+        const date = new Date(year, month, i);
+        const date_str = date.toLocaleDateString();
+
         updateCalendarCell(
             cells[start_cell + i - 1],
-            new Date(year, month, i),
-            month_events[i]
+            date,
+            month_events[date_str]
         );
     }
 
@@ -46,6 +49,8 @@ function updateCalendar(year = selectedDate.getFullYear(), month = selectedDate.
     const month_str = d.toLocaleString('default', { month: 'long' }).toUpperCase();
     table_month.textContent = `${month_str} ${year}`;
 
+    // Change Event List on the side
+    updateEventList(event_list, month_events[selectedDate.toLocaleDateString()]);
 }
 
 function onCellClick(i) {
@@ -59,6 +64,7 @@ export function setSelectedDate(date) {
 }
 
 function setMonth(month) {
+    selectedDate.setDate(1);
     selectedDate.setMonth(month)
     updateCalendar();
 }
@@ -82,5 +88,7 @@ function gotoToday() {
 }
 
 // ====================
-initalizeCalendar();
-updateCalendar();
+// Export for html
+window.monthUp = monthUp;
+window.monthDown = monthDown;
+window.gotoToday = gotoToday;

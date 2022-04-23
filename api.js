@@ -10,8 +10,4 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js';
 
 const db = getFirestore();
-const eventsRef = collection(db, 'events');
-
-export function a() {
-
-}
+export const eventsRef = collection(db, 'events');

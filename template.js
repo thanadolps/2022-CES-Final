@@ -1,12 +1,15 @@
-import { month_events } from "./event.js"
 import { selectedDate, setSelectedDate } from "./calendar.js"
 import { event_list } from "./event.js"
+
+/**
+ * @typedef {{name: string, subject: string, type: string, date: string}} Event
+ */
 
 /**
  * 
  * @param {HTMLTableCellElement} cell 
  * @param {Date?} date
- * @param {{name: string, subject: string, type: string}[]?} events 
+ * @param {Event[]?} events 
  */
 export function updateCalendarCell(cell, date, events) {
     cell.innerHTML = "";
@@ -27,19 +30,20 @@ export function updateCalendarCell(cell, date, events) {
     `.trim();
 
     cell.onclick = () => {
+        console.log(`Select ${date.toLocaleDateString()}`)
         setSelectedDate(date);
-        updateEventList();
+        updateEventList(event_list, events);
     };
 }
 
 /**
  * 
  * @param {HTMLUListElement} list 
+ * @param {Event[]?} events 
  */
-export function updateEventList(list = event_list) {
-    const events = month_events[selectedDate.getDate()] ?? [];
+export function updateEventList(list = event_list, events) {
     list.innerHTML =
-        events
+        (events ?? [])
             .map(ev => `<li>${ev.name}</li>`)
             .join('\n');
 }
