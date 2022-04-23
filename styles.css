@@ -14,12 +14,16 @@ body {
 
 #main-content {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    gap: 16px;
 }
 
 #calendar {
     border: 1px solid black;
     text-align: center;
-    width: 75vw;
+    flex: 1;
 }
 
 #calendar>table {
@@ -27,13 +31,19 @@ body {
     padding: 16px;
 }
 
-#date-event {
-    border: 1px solid black;
-}
-
 .calendar-cell {
     height: 50px;
     border: 1px solid black;
     text-align: left;
     vertical-align: text-top;
+}
+
+.calendar-cell-selected {
+    background-color: bisque;
+}
+
+#date-event {
+    border: 1px solid black;
+    padding: 16px;
+    flex: 0.5;
 }
