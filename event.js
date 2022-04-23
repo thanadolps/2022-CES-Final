@@ -3,6 +3,7 @@ import {
     collection,
     deleteDoc,
     doc,
+    onSnapshot,
     getDoc,
     getDocs,
     getFirestore,
@@ -12,27 +13,12 @@ import { eventDoc, eventsRef } from './api.js';
 import { selectedDate, updateCalendar } from './calendar.js';
 
 /**
- * @typedef {{id: string, name: string, subject: string, type: string, date: string}} Event
+ * @typedef {{id: string, name: string, subject: string, type: string, date: string, difficulity: number}} Event
  */
 
 
-export let month_events = {};
+export let events_by_date = {};
 export const event_list = document.getElementById("date-event-list")
-
-export async function refetchEvents() {
-    month_events = {};
-    (await getDocs(eventsRef))
-        .forEach(x => {
-            const data = x.data();
-            if (month_events[data.date] === undefined) {
-                month_events[data.date] = []
-            }
-
-            month_events[data.date].push({ ...data, id: x.id });
-        })
-    updateCalendar();
-    console.log("Fetched Events: ", month_events);
-}
 
 /**
  * 
@@ -42,29 +28,44 @@ export async function addEvent(event) {
     console.log("Added Event", event);
     await addDoc(eventsRef, event);
     // alert("Added sucess");
-    refetchEvents();
 }
 
 export async function deleteEvent(id) {
     console.log("Delete Event with id", id);
     const docRef = eventDoc(id);
     await deleteDoc(docRef);
-    refetchEvents();
 }
 
 export async function submitEvent(e) {
     e.preventDefault();
 
+    const form = document.getElementById("date-event-form");
     const subject = document.getElementsByName("subject")[0].value;
     const type = document.getElementsByName("type")[0].value;
     const name = document.getElementsByName("name")[0].value;
+    const difficulity = +document.getElementsByName("difficulity")[0].value;
     const date = selectedDate.toLocaleDateString();
 
-    const newEvent = { subject, type, name, date };
-    await addEvent(newEvent)
+    const newEvent = { subject, type, name, date, difficulity };
+    await addEvent(newEvent);
+    form.reset();
     return false;
 }
 
+onSnapshot(eventsRef, (events_doc) => {
+    events_by_date = {};
+    events_doc
+        .forEach(x => {
+            const data = x.data();
+            if (events_by_date[data.date] === undefined) {
+                events_by_date[data.date] = []
+            }
+
+            events_by_date[data.date].push({ ...data, id: x.id });
+        })
+    updateCalendar();
+    console.log("Fetched Events: ", events_by_date);
+})
+
 window.submitEvent = submitEvent;
 window.deleteEvent = deleteEvent;
-window.refetchEvents = refetchEvents;

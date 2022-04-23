@@ -1,5 +1,5 @@
 import { updateCalendarCell, updateEventList } from "./template.js"
-import { event_list, month_events } from "./event.js"
+import { event_list, events_by_date } from "./event.js"
 
 const N_DAY_IN_WEEK = 7;
 const N_WEEK_IN_MONTH = 6;
@@ -41,7 +41,7 @@ export function updateCalendar(year = selectedDate.getFullYear(), month = select
         updateCalendarCell(
             cells[start_cell + i - 1],
             date,
-            month_events[date_str]
+            events_by_date[date_str]
         );
     }
 
@@ -50,7 +50,7 @@ export function updateCalendar(year = selectedDate.getFullYear(), month = select
     table_month.textContent = `${month_str} ${year}`;
 
     // Change Event List on the side
-    updateEventList(event_list, month_events[selectedDate.toLocaleDateString()]);
+    updateEventList(event_list, events_by_date[selectedDate.toLocaleDateString()]);
 }
 
 function onCellClick(i) {

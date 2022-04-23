@@ -48,7 +48,7 @@
         </div>
 
         <div id="date-event">
-            <h2>Date Select</h2>
+            <h2><button>Date Select</button></h2>
 
             <ul id="date-event-list">
                 <!-- will be filled by updateEventList in template.js -->
@@ -65,6 +65,14 @@
                     <option value="HW">การบ้าน</option>
                     <option value="_">อื่นๆ</option>
                 </select>
+                <select name="difficulity" selected="" required>
+                    <option disabled selected value="">ความยาก</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
                 <input name="name" placeholder="Task Name" required />
                 <button>Submit</button>
             </form>
@@ -78,9 +86,7 @@
     <script type="module" src="calendar.js"></script>
     <script type="module">
         import { initalizeCalendar } from "./calendar.js";
-        import { refetchEvents } from "./event.js"
         initalizeCalendar();
-        refetchEvents();
     </script>
 </body>
 

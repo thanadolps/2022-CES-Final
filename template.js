@@ -2,7 +2,7 @@ import { selectedDate, setSelectedDate } from "./calendar.js"
 import { event_list } from "./event.js"
 
 /**
- * @typedef {{id: string, name: string, subject: string, type: string, date: string}} Event
+ * @typedef {{id: string, name: string, subject: string, type: string, date: string, difficulity: number}} Event
  */
 
 /**
