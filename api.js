@@ -11,3 +11,4 @@ import {
 
 const db = getFirestore();
 export const eventsRef = collection(db, 'events');
+export const eventDoc = (docId) => doc(db, `events/${docId}`);

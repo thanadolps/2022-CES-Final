@@ -2,7 +2,7 @@ import { selectedDate, setSelectedDate } from "./calendar.js"
 import { event_list } from "./event.js"
 
 /**
- * @typedef {{name: string, subject: string, type: string, date: string}} Event
+ * @typedef {{id: string, name: string, subject: string, type: string, date: string}} Event
  */
 
 /**
@@ -44,6 +44,11 @@ export function updateCalendarCell(cell, date, events) {
 export function updateEventList(list = event_list, events) {
     list.innerHTML =
         (events ?? [])
-            .map(ev => `<li>${ev.name}</li>`)
+            .map(ev => `
+                <li>
+                    ${ev.name}
+                    <button onclick="deleteEvent('${ev.id}')">Delete</button>
+                </li>
+            `)
             .join('\n');
 }

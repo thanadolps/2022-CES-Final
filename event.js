@@ -8,11 +8,11 @@ import {
     getFirestore,
     updateDoc,
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js';
-import { eventsRef } from './api.js';
+import { eventDoc, eventsRef } from './api.js';
 import { selectedDate, updateCalendar } from './calendar.js';
 
 /**
- * @typedef {{name: string, subject: string, type: string, date: string}} Event
+ * @typedef {{id: string, name: string, subject: string, type: string, date: string}} Event
  */
 
 
@@ -28,7 +28,7 @@ export async function refetchEvents() {
                 month_events[data.date] = []
             }
 
-            month_events[data.date].push(data);
+            month_events[data.date].push({ ...data, id: x.id });
         })
     updateCalendar();
     console.log("Fetched Events: ", month_events);
@@ -38,10 +38,17 @@ export async function refetchEvents() {
  * 
  * @param {Event} event
  */
-async function addEvent(event) {
+export async function addEvent(event) {
     console.log("Added Event", event);
     await addDoc(eventsRef, event);
     // alert("Added sucess");
+    refetchEvents();
+}
+
+export async function deleteEvent(id) {
+    console.log("Delete Event with id", id);
+    const docRef = eventDoc(id);
+    await deleteDoc(docRef);
     refetchEvents();
 }
 
@@ -59,4 +66,5 @@ export async function submitEvent(e) {
 }
 
 window.submitEvent = submitEvent;
+window.deleteEvent = deleteEvent;
 window.refetchEvents = refetchEvents;
