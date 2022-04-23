@@ -1,6 +1,36 @@
-const month_events = {
-    1: ["A", "B", "C"],
-    11: ["G"]
+import { a } from './api.js';
+
+export const month_events = {
+    1: [
+        {
+            name: "A",
+            subject: "Cal",
+            type: "Work",
+        },
+        {
+            name: "B",
+            subject: "Cal",
+            type: "Work",
+        },
+        {
+            name: "C",
+            subject: "Cal",
+            type: "Work",
+        }
+    ],
+    11: [
+        {
+            name: "G",
+            subject: "Cal",
+            type: "Work",
+        }
+    ]
 }
 
-const event_list = document.getElementById("date-event-list")
+function refetchEvent() {
+
+}
+
+a();
+
+export const event_list = document.getElementById("date-event-list")

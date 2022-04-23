@@ -1,10 +1,14 @@
+import { month_events } from "./event.js"
+import { selectedDate, setSelectedDate } from "./calendar.js"
+import { event_list } from "./event.js"
+
 /**
  * 
  * @param {HTMLTableCellElement} cell 
  * @param {Date?} date
- * @param {number[]?} events 
+ * @param {{name: string, subject: string, type: string}[]?} events 
  */
-function updateCalendarCell(cell, date, events) {
+export function updateCalendarCell(cell, date, events) {
     cell.innerHTML = "";
     cell.onclick = null;
     cell.className = "calendar-cell";
@@ -18,13 +22,12 @@ function updateCalendarCell(cell, date, events) {
     cell.innerHTML = `
         ${date.getDate()}
         <ul>
-            ${(events ?? []).map(e => `<li>${e}</li>`).join('\n')}
+            ${(events ?? []).map(ev => `<li>${ev.name}</li>`).join('\n')}
         </ul >
     `.trim();
 
     cell.onclick = () => {
-        selectedDate = date;
-        updateCalendar();
+        setSelectedDate(date);
         updateEventList();
     };
 }
@@ -33,7 +36,10 @@ function updateCalendarCell(cell, date, events) {
  * 
  * @param {HTMLUListElement} list 
  */
-function updateEventList(list = event_list) {
+export function updateEventList(list = event_list) {
     const events = month_events[selectedDate.getDate()] ?? [];
-    list.innerHTML = events.map(e => `<li>${e}</li>`).join('\n');
+    list.innerHTML =
+        events
+            .map(ev => `<li>${ev.name}</li>`)
+            .join('\n');
 }

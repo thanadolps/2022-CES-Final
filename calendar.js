@@ -1,3 +1,6 @@
+import { updateCalendarCell, updateEventList } from "./template.js"
+import { month_events } from "./event.js"
+
 const N_DAY_IN_WEEK = 7;
 const N_WEEK_IN_MONTH = 6;
 
@@ -5,7 +8,7 @@ const table = document.getElementById("calendar-table")
 const table_month = document.getElementById("calendar-month");
 const cells = []
 
-let selectedDate = new Date();  // initalize to today
+export let selectedDate = new Date();  // initalize to today
 
 // ====================
 function initalizeCalendar() {
@@ -49,6 +52,11 @@ function onCellClick(i) {
     console.log(i)
 }
 // ====================
+
+export function setSelectedDate(date) {
+    selectedDate = date;
+    updateCalendar();
+}
 
 function setMonth(month) {
     selectedDate.setMonth(month)
