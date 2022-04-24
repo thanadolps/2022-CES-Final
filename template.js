@@ -16,6 +16,7 @@ export function updateCalendarCell(cell_element, date, events) {
     cell_element.onclick = null;
     cell_element.className = "calendar-cell";
 
+
     if (date === null) { return; }
 
     if (date.getDate() == selectedDate.getDate()) {
@@ -25,7 +26,7 @@ export function updateCalendarCell(cell_element, date, events) {
     cell_element.innerHTML = `
         ${date.getDate()}
         <ul>
-            ${(events ?? []).map(ev => `<li>${ev.name}</li>`).join('\n')}
+            ${(events ?? []).map(ev => `<li class="${ev.type}" id="incell-text">${ev.name}</li>`).join('\n')}
         </ul >
     `.trim();
 
@@ -45,11 +46,12 @@ export function updateEventList(event_list_element = event_list, events) {
     event_list_element.innerHTML =
         (events ?? [])
             .map(ev => `
-                <li>
+                <li class="${ev.type}">
                     ${ev.name} |
                     ${ev.subject} | 
                     ยาก ${ev.difficulity}
-                    <button onclick="deleteEvent('${ev.id}')">Delete</button>
+                    <button onclick="deleteEvent('${ev.id}')" style="float:right">Delete</button>
+                    <hr style="clear:both;"/>
                 </li>
             `)
             .join('\n');

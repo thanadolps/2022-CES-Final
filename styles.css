@@ -8,11 +8,31 @@ html {
     box-sizing: inherit;
 }
 
+.theme-light {
+    --color-primary: #f8ecdc;
+    --color-text: black;
+    --color-selected: bisque;
+    --color-line: rgb(32, 32, 32);
+    --color-content: #f1ebd1;
+    --color-inner-content: #fff3be;
+    --color-button-hover: rgb(255, 226, 172);
+  }
+.theme-dark {
+    --color-primary: #171717;
+    --color-text: lightgray;
+    --color-selected: gray;
+    --color-line: rgb(150, 150, 150);
+    --color-content: rgb(61, 61, 59);
+    --color-inner-content: rgb(43, 43, 43);
+    --color-button-hover: rgb(138, 140, 255);
+}
+
 body {
-    background-color: #f8f8ff;
+    background-color: var(--color-primary)
 }
 
 #main-content {
+    color: var(--color-text);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -21,42 +41,143 @@ body {
 }
 
 #calendar {
-    border: 1px solid black;
+    color: var(--color-text);
+    border: 2px solid var(--color-line);
     text-align: center;
     flex: 1;
+    border-radius: 10px;
+    background-color: var(--color-content);
+    font-size: 22px;
 }
 
 #calendar>table {
+    color: var(--color-text);
     width: 100%;
     padding: 16px;
 }
 
 .calendar-cell {
-    height: 50px;
-    border: 1px solid black;
+    color: var(--color-text);
+    height: 90px;
+    width: 200px;
+    border: 1px solid var(--color-line);
     text-align: left;
     vertical-align: text-top;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: var(--color-inner-content);
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .calendar-cell-selected {
-    background-color: bisque;
+    background-color: var(--color-selected);
 }
 
 #date-event {
-    border: 1px solid black;
+    color: var(--color-text);
+    border: 2px solid var(--color-line);
     padding: 16px;
     flex: 0.5;
+    border-radius: 10px;
+    background-color: var(--color-content);
+    line-height: 1.6;
+    font-size: 19px;
 }
 
 #date-select {
-    border: 1px solid black;
+    color: var(--color-text);
+    border: 1px solid var(--color-line);
     text-align: center;
     cursor: pointer;
 
     text-decoration: underline transparent;
     transition: 0.3s;
+    background-color: var(--color-inner-content);
+    border-radius: 8px;
 }
 
 #date-select:hover {
+    color: var(--color-text);
     text-decoration: underline black;
+}
+
+#header {
+    color: var(--color-text);
+    font-size: 80px;
+    font-style: italic;
+    line-height: 0.5;
+}
+
+#subject {
+    color: var(--color-text);
+    font-size: 20px;
+    font-style: normal;
+}
+
+.stroke {
+    text-shadow: -0.6px -0.6px 0 rgb(63, 62, 62) , 0.6px -0.6px 0 rgb(63, 62, 62), -0.6px 0.6px 0 rgb(63, 62, 62), 0.6px 0.6px 0 rgb(63, 62, 62);
+}
+
+.HW {
+    color: orange;
+}
+
+.Exam {
+    color: red;
+}
+
+._ {
+    color: rgb(19, 206, 12);
+}
+
+.box {
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    clear: both;
+}
+
+.HWBG {
+    background-color: orange;
+}
+
+.ExamBG {
+    background-color: red;
+}
+
+._BG {
+    background-color: rgb(19, 206, 12);
+}
+
+.float-div {
+    margin: 10px;
+    color: var(--color-text);
+}
+
+button {
+    border-radius: 7px;
+    background-color: var(--color-inner-content);
+    color: var(--color-text);
+}
+
+button:hover {
+    background-color: var(--color-button-hover);
+}
+
+input,select {
+    border-radius: 4px;
+    background-color: var(--color-inner-content);
+    color: var(--color-text);
+    width: 20%;
+}
+
+#Theme-select {
+    width: 100px;
+}
+
+#incell-text {
+    font-size: 17px;
 }
