@@ -38,15 +38,17 @@ export function updateCalendarCell(cell_element, date, events) {
 
 /**
  * 
- * @param {HTMLUListElement} list_element 
+ * @param {HTMLUListElement} event_list_element 
  * @param {Event[]?} events 
  */
-export function updateEventList(list_element = event_list, events) {
-    list_element.innerHTML =
+export function updateEventList(event_list_element = event_list, events) {
+    event_list_element.innerHTML =
         (events ?? [])
             .map(ev => `
                 <li>
-                    ${ev.name}
+                    ${ev.name} |
+                    ${ev.subject} | 
+                    ยาก ${ev.difficulity}
                     <button onclick="deleteEvent('${ev.id}')">Delete</button>
                 </li>
             `)
