@@ -4,6 +4,7 @@ import { event_list, events_by_date } from "./event.js"
 const N_DAY_IN_WEEK = 7;
 const N_WEEK_IN_MONTH = 6;
 
+const date_select = document.getElementById("date-select");
 const table = document.getElementById("calendar-table")
 const table_month = document.getElementById("calendar-month");
 const cells = []
@@ -36,7 +37,7 @@ export function updateCalendar(year = selectedDate.getFullYear(), month = select
     const start_cell = d.getDay();
     for (let i = 1; new Date(year, month, i).getMonth() == month; i++) {
         const date = new Date(year, month, i);
-        const date_str = date.toLocaleDateString();
+        const date_str = date.toLocaleDateString('sv');
 
         updateCalendarCell(
             cells[start_cell + i - 1],
@@ -46,11 +47,14 @@ export function updateCalendar(year = selectedDate.getFullYear(), month = select
     }
 
     // Change month name
-    const month_str = d.toLocaleString('default', { month: 'long' }).toUpperCase();
+    const month_str = selectedDate.toLocaleString('default', { month: 'long' }).toUpperCase();
     table_month.textContent = `${month_str} ${year}`;
 
+    // Change date on the side
+    date_select.textContent = selectedDate.toLocaleDateString();
+
     // Change Event List on the side
-    updateEventList(event_list, events_by_date[selectedDate.toLocaleDateString()]);
+    updateEventList(event_list, events_by_date[selectedDate.toLocaleDateString('sv')]);
 }
 
 function onCellClick(i) {
@@ -60,6 +64,7 @@ function onCellClick(i) {
 
 export function setSelectedDate(date) {
     selectedDate = date;
+    console.log(`Selected ${date.toLocaleDateString('sv')}`)
     updateCalendar();
 }
 

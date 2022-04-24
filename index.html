@@ -23,7 +23,10 @@
         <div id="calendar">
             <h2>
                 <button onclick="monthDown()">&lt;</button>
-                <span id="calendar-month">MARCH 2023</span>
+                <span id="calendar-month">
+                    <!-- text content will be replace with appropriate month/year, in updateCalendar in calendar.js-->
+                    MONTH YEAR
+                </span>
                 <button onclick="monthUp()">&gt;</button>
                 <button onclick="gotoToday()">T</button>
                 <button onclick="refetchEvents()">refetch</button>
@@ -48,7 +51,10 @@
         </div>
 
         <div id="date-event">
-            <h2><button>Date Select</button></h2>
+            <h2 id="date-select">
+                <!-- text content will be replace with date string of selecting cell, in updateCalendar in calendar.js-->
+                Date Select
+            </h2>
 
             <ul id="date-event-list">
                 <!-- will be filled by updateEventList in template.js -->
@@ -85,8 +91,15 @@
     <script type="module" src="template.js"></script>
     <script type="module" src="calendar.js"></script>
     <script type="module">
-        import { initalizeCalendar } from "./calendar.js";
+        import { initalizeCalendar, setSelectedDate } from "./calendar.js";
         initalizeCalendar();
+
+        document.getElementById("date-select").onclick = () => {
+            const [d, m, y] = window.prompt("Input date (d/m/Y)").split('/');
+            const date = new Date(y, m - 1, d);
+            if (isNaN(date.getTime())) { alert("Invalid date"); return; }
+            setSelectedDate(date);
+        };
     </script>
 </body>
 

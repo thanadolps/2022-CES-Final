@@ -47,3 +47,16 @@ body {
     padding: 16px;
     flex: 0.5;
 }
+
+#date-select {
+    border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+
+    text-decoration: underline transparent;
+    transition: 0.3s;
+}
+
+#date-select:hover {
+    text-decoration: underline black;
+}

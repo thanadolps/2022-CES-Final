@@ -7,30 +7,30 @@ import { event_list } from "./event.js"
 
 /**
  * 
- * @param {HTMLTableCellElement} cell 
+ * @param {HTMLTableCellElement} cell_element 
  * @param {Date?} date
  * @param {Event[]?} events 
  */
-export function updateCalendarCell(cell, date, events) {
-    cell.innerHTML = "";
-    cell.onclick = null;
-    cell.className = "calendar-cell";
+export function updateCalendarCell(cell_element, date, events) {
+    cell_element.innerHTML = "";
+    cell_element.onclick = null;
+    cell_element.className = "calendar-cell";
 
     if (date === null) { return; }
 
     if (date.getDate() == selectedDate.getDate()) {
-        cell.className += " calendar-cell-selected";
+        cell_element.className += " calendar-cell-selected";
     }
 
-    cell.innerHTML = `
+    cell_element.innerHTML = `
         ${date.getDate()}
         <ul>
             ${(events ?? []).map(ev => `<li>${ev.name}</li>`).join('\n')}
         </ul >
     `.trim();
 
-    cell.onclick = () => {
-        console.log(`Select ${date.toLocaleDateString()}`)
+    cell_element.onclick = () => {
+        console.log(`Clicked ${date.toLocaleDateString('sv')}`)
         setSelectedDate(date);
         updateEventList(event_list, events);
     };
@@ -38,11 +38,11 @@ export function updateCalendarCell(cell, date, events) {
 
 /**
  * 
- * @param {HTMLUListElement} list 
+ * @param {HTMLUListElement} list_element 
  * @param {Event[]?} events 
  */
-export function updateEventList(list = event_list, events) {
-    list.innerHTML =
+export function updateEventList(list_element = event_list, events) {
+    list_element.innerHTML =
         (events ?? [])
             .map(ev => `
                 <li>

@@ -44,7 +44,7 @@ export async function submitEvent(e) {
     const type = document.getElementsByName("type")[0].value;
     const name = document.getElementsByName("name")[0].value;
     const difficulity = +document.getElementsByName("difficulity")[0].value;
-    const date = selectedDate.toLocaleDateString();
+    const date = selectedDate.toLocaleDateString('sv');
 
     const newEvent = { subject, type, name, date, difficulity };
     await addEvent(newEvent);
