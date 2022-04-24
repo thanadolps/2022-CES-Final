@@ -10,7 +10,7 @@ import {
     updateDoc,
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js';
 import { eventDoc, eventsRef } from './api.js';
-import { selectedDate, updateCalendar } from './calendar.js';
+import { selectedDate, setSelectedDate, updateCalendar } from './calendar.js';
 import * as notification from "./notification.js"
 
 /**
@@ -55,8 +55,32 @@ export async function submitEvent(e) {
     return false;
 }
 
+let firstTime = true;
+
 // Run when data in backend change
 onSnapshot(eventsRef, (events_doc) => {
+    // Display notification when event is add/remove
+    if (!firstTime) {
+        events_doc.docChanges().forEach(change => {
+            const data = change.doc.data();
+            switch (change.type) {
+                case "added":
+                    new Notification(`Add ${data.name}`, {
+                        body: data.date + ' | ' + data.subject
+                    }).addEventListener('click', () => {
+                        const [y, m, d] = data.date.split('-');
+                        setSelectedDate(new Date(y, m - 1, d))
+                    });
+                    break;
+                case "removed":
+                    new Notification(`Remove ${data.name}`, {
+                        body: data.date + ' | ' + data.subject,
+                    });
+                    break;
+            }
+        });
+    }
+
     // Construct events_by_date from data from backend database 
     events_by_date = {};
     events_doc
@@ -83,6 +107,7 @@ onSnapshot(eventsRef, (events_doc) => {
 
     updateCalendar();
     console.log("Fetched Events: ", events_by_date);
+    firstTime = false;
 })
 
 window.submitEvent = submitEvent;
