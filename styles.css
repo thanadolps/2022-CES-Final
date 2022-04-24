@@ -175,7 +175,8 @@ input,select {
 }
 
 #Theme-select {
-    width: 100px;
+    width: 108px;
+    text-align: center;
 }
 
 #incell-text {

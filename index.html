@@ -21,8 +21,9 @@
     <div>
         <h1 id="header" style="text-align:left;float:left;">Scalendar</h1>
         <select id="Theme-select" style="float:right;" onchange="SwitchTheme()">
-            <option value="light" selected>Light theme</option>
-            <option value="dark">Dark theme</option>
+            <option disabled selected value="">Theme select</option>
+            <option value="light" id="light">Light theme</option>
+            <option value="dark" id="dark">Dark theme</option>
         </select>
     </div>
     <script>
@@ -98,17 +99,6 @@
             </ul>
 
             <form action="#" id="date-event-form" onsubmit="submitEvent(event)">
-                <!-- <select name="subject" selected="" required>
-                    <option disabled selected value="">วิชา</option>
-                    <option value="Cal">Cal</option>
-                    <option value="PRGMTH">ProgMeth</option>
-                    <option value="CEES">ComEngEss</option>
-                    <option value="EXPENG">ExpEng</option>
-                    <option value="GCHEM">GenChem</option>
-                    <option value="CHEMLAB">GenChemLab</option>
-                    <option value="GPHYS">GenPhys</option>
-                    <option value="PHYSLAB">GenPhysLab</option>
-                </select> -->
 
                 <input type="text" name="subject" list="Subject" placeholder="Subject" required>
                     <datalist id="Subject">
