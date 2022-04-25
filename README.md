@@ -1,3 +1,4 @@
+# Scalendar
 ## Running
 Use any static file server on this folder.
 
