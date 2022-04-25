@@ -46,8 +46,15 @@
         (function () {
             if (localStorage.getItem('theme') === 'theme-dark') {
                 setTheme('theme-dark');
-            } else {
+            } else if(localStorage.getItem('theme') === 'theme-light') {
                 setTheme('theme-light');
+            } else {
+                // If theme isn't set, set it to user's prefers-color-scheme
+                if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    setTheme('theme-dark');
+                } else if(window.matchMedia("(prefers-color-scheme: light)").matches){
+                    setTheme('theme-light');
+                }
             }
         })();
     </script>
