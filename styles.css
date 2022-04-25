@@ -136,7 +136,6 @@ body {
     float: left;
     height: 20px;
     width: 20px;
-    margin-bottom: 15px;
     border: 1px solid black;
     clear: both;
 }
@@ -155,7 +154,7 @@ body {
 
 .float-div {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     margin: 10px;
     color: var(--color-text);
 }
