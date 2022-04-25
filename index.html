@@ -36,9 +36,9 @@
 
         // function to toggle between light and dark theme
         function SwitchTheme() {
-            if (document.getElementById("Theme-select").value=="light") {
+            if (document.getElementById("Theme-select").value == "light") {
                 setTheme('theme-light');
-            } else if (document.getElementById("Theme-select").value=="dark") {
+            } else if (document.getElementById("Theme-select").value == "dark") {
                 setTheme('theme-dark');
             }
         }
@@ -47,24 +47,30 @@
         (function () {
             if (localStorage.getItem('theme') === 'theme-dark') {
                 setTheme('theme-dark');
-            } else if(localStorage.getItem('theme') === 'theme-light') {
+            } else if (localStorage.getItem('theme') === 'theme-light') {
                 setTheme('theme-light');
             } else {
                 // If theme isn't set, set it to user's prefers-color-scheme
-                if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
                     setTheme('theme-dark');
-                } else if(window.matchMedia("(prefers-color-scheme: light)").matches){
+                } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
                     setTheme('theme-light');
                 }
             }
         })();
     </script>
 
-    <hr style="clear:both;"/>
+    <hr style="clear:both;" />
     <div style="float:right; margin-bottom: 15px;">
-        <h3 class="float-div"><div class='box ExamBG'></div> = สอบ</h3>
-        <h3 class="float-div"><div class='box HWBG'></div> = การบ้าน</h3>
-        <h3 class="float-div"><div class='box _BG'></div> = อื่นๆ</h3>
+        <h3 class="float-div">
+            <div class='box ExamBG'></div> = สอบ
+        </h3>
+        <h3 class="float-div">
+            <div class='box HWBG'></div> = การบ้าน
+        </h3>
+        <h3 class="float-div">
+            <div class='box _BG'></div> = อื่นๆ
+        </h3>
     </div>
     <h3 style="clear:both;"></h3>
 
@@ -83,12 +89,12 @@
             <table id="calendar-table">
                 <tr>
                     <th style="color: #ff0000" class="stroke">SUN</th>
-                    <th style="color: #ffee00"class="stroke">MON</th>
-                    <th style="color: #f5c0cb"class="stroke">TUE</th>
-                    <th style="color: #008000"class="stroke">WED</th>
-                    <th style="color: #ffa500"class="stroke">THU</th>
-                    <th style="color: #32dfd2"class="stroke">FRI</th>
-                    <th style="color: #800080"class="stroke">SAT</th>
+                    <th style="color: #ffee00" class="stroke">MON</th>
+                    <th style="color: #f5c0cb" class="stroke">TUE</th>
+                    <th style="color: #008000" class="stroke">WED</th>
+                    <th style="color: #ffa500" class="stroke">THU</th>
+                    <th style="color: #32dfd2" class="stroke">FRI</th>
+                    <th style="color: #800080" class="stroke">SAT</th>
                 </tr>
                 <!-- calendar.js will create table cells here-->
                 <!-- cell's inner html is defined in updateCalendarCell in template.js -->
@@ -111,16 +117,16 @@
             <form action="#" id="date-event-form" onsubmit="submitEvent(event)">
 
                 <input type="text" name="subject" list="Subject" placeholder="Subject" required>
-                    <datalist id="Subject">
-                        <option>Cal</option>
-                        <option>ProgMeth</option>
-                        <option>ComEngEss</option>
-                        <option>ExpEng</option>
-                        <option>GenChem</option>
-                        <option>GenChemLab</option>
-                        <option>GenPhys</option>
-                        <option>GenPhysLab</option>
-                    </datalist>
+                <datalist id="Subject">
+                    <option>Cal</option>
+                    <option>ProgMeth</option>
+                    <option>ComEngEss</option>
+                    <option>ExpEng</option>
+                    <option>GenChem</option>
+                    <option>GenChemLab</option>
+                    <option>GenPhys</option>
+                    <option>GenPhysLab</option>
+                </datalist>
 
                 <select name="type" selected="" required>
                     <option disabled selected value="">ประเภทงาน</option>
@@ -160,4 +166,5 @@
         };
     </script>
 </body>
+
 </html>

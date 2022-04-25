@@ -1,3 +1,11 @@
+@media only screen and (max-device-width: 500px) and (orientation: portrait) {
+
+    /** For mobile device*/
+    html {
+        font-size: 150%;
+    }
+}
+
 html {
     box-sizing: border-box;
 }
@@ -48,7 +56,7 @@ body {
     flex: 1 1 60%;
     border-radius: 10px;
     background-color: var(--color-content);
-    font-size: 22px;
+    font-size: 1.375rem;
 }
 
 #calendar>table {
@@ -65,9 +73,8 @@ body {
     text-align: left;
     vertical-align: text-top;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 1.25rem;
     background-color: var(--color-inner-content);
-    font-size: 20px;
     font-weight: bold;
 }
 
@@ -83,7 +90,7 @@ body {
     border-radius: 10px;
     background-color: var(--color-content);
     line-height: 1.6;
-    font-size: 19px;
+    font-size: 1.188rem;
 }
 
 #date-select {
@@ -105,14 +112,14 @@ body {
 
 #header {
     color: var(--color-text);
-    font-size: 80px;
+    font-size: 5rem;
     font-style: italic;
     line-height: 0.5;
 }
 
 #subject {
     color: var(--color-text);
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
 }
 
@@ -188,5 +195,5 @@ select {
 }
 
 .incell-text {
-    font-size: 17px;
+    font-size: 1.063rem;
 }
