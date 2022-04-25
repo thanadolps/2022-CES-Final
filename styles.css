@@ -16,7 +16,8 @@ html {
     --color-content: #f1ebd1;
     --color-inner-content: #fff3be;
     --color-button-hover: rgb(255, 226, 172);
-  }
+}
+
 .theme-dark {
     --color-primary: #171717;
     --color-text: lightgray;
@@ -44,7 +45,7 @@ body {
     color: var(--color-text);
     border: 2px solid var(--color-line);
     text-align: center;
-    flex: 1;
+    flex: 1 1 60%;
     border-radius: 10px;
     background-color: var(--color-content);
     font-size: 22px;
@@ -78,7 +79,7 @@ body {
     color: var(--color-text);
     border: 2px solid var(--color-line);
     padding: 16px;
-    flex: 0.5;
+    flex: 1 1 30%;
     border-radius: 10px;
     background-color: var(--color-content);
     line-height: 1.6;
@@ -116,7 +117,7 @@ body {
 }
 
 .stroke {
-    text-shadow: -0.6px -0.6px 0 rgb(63, 62, 62) , 0.6px -0.6px 0 rgb(63, 62, 62), -0.6px 0.6px 0 rgb(63, 62, 62), 0.6px 0.6px 0 rgb(63, 62, 62);
+    text-shadow: -0.6px -0.6px 0 rgb(63, 62, 62), 0.6px -0.6px 0 rgb(63, 62, 62), -0.6px 0.6px 0 rgb(63, 62, 62), 0.6px 0.6px 0 rgb(63, 62, 62);
 }
 
 .HW {
@@ -167,7 +168,8 @@ button:hover {
     background-color: var(--color-button-hover);
 }
 
-input,select {
+input,
+select {
     border-radius: 4px;
     background-color: var(--color-inner-content);
     color: var(--color-text);
@@ -179,6 +181,11 @@ input,select {
     text-align: center;
 }
 
-#incell-text {
+.incell-list {
+    padding-left: 20px;
+    padding-right: 8px;
+}
+
+.incell-text {
     font-size: 17px;
 }

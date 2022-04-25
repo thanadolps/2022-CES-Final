@@ -25,8 +25,8 @@ export function updateCalendarCell(cell_element, date, events) {
 
     cell_element.innerHTML = `
         ${date.getDate()}
-        <ul>
-            ${(events ?? []).map(ev => `<li class="${ev.type}" id="incell-text">${ev.name}</li>`).join('\n')}
+        <ul class="incell-list">
+            ${(events ?? []).map(ev => `<li class="incell-text ${ev.type}">${ev.name}</li>`).join('\n')}
         </ul >
     `.trim();
 
