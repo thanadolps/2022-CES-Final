@@ -154,6 +154,8 @@ body {
 }
 
 .float-div {
+    display: inline-flex;
+    align-items: baseline;
     margin: 10px;
     color: var(--color-text);
 }
